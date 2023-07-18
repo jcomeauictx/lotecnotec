@@ -1,4 +1,4 @@
-#lotecnotec
+# lotecnotec
 
 `lotecnotec` is the name of my (John Comeau &lt;jc@unternet.net&gt;) entry
 in the Kinetic Grand Championship race every year since 2010, and on Robert
