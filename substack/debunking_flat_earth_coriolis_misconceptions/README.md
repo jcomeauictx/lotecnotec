@@ -22,6 +22,6 @@ Plugging those values into the above formula, we get <code>&omega; &bullet; sin(
 
 So the calculated Coriolis drift is under 30 feet, compared to the stated 26 feet per 1 MPH increase in wind speed, which according to the sources varied between 6 and 9 MPH. That's why it was negligible compared to wind uncertainty.
 
-The MOA calculation, according to Falcon, is 4.18 MOA to the right to POI (point of impact), so you'd need to dial the sights left by 4.18 (or 4.19 using the sidereal day), <code>0.25 &bullet; t &bullet; sin(&phi;)</code>, the same formula except dividing drift by distance to get minutes of arc.
+The MOA calculation, according to Falcon, the POI (point of impact) is 4.18 MOA right of the POA (point of aim), so you'd need to dial the sights left by 4.18 (or 4.19 using the more accurate sidereal day), <code>0.25 &bullet; t &bullet; sin(&phi;)</code>, the same formula except dividing drift by distance to get minutes of arc.
 
-So, while the west-to-east spin speed at 43&deg; north latitude was "baked into" (my words) the bullet at the moment it left the muzzle, the ground is <em>turning</em> under it as it flies, shifting the target to the right in the northern hemisphere and to the left in the southern. It's that turning that creates the Coriolis drift.
+So, while the west-to-east spin speed at 43&deg; north latitude was "baked into" (my words) the bullet at the moment it left the muzzle, the ground is <em>turning</em> under it as it flies, shifting the target to the left in the northern hemisphere, making the bullet fall to the right. It's that turning that creates the Coriolis drift.
