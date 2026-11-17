@@ -1,4 +1,4 @@
-[!https://www.facebook.com/aero.plane.921/posts/pfbid0xamjRqqnmeMSTQFPDgmfw4XVj68yLDwy45ckTAXCXjPKCVfsNST18Lzyr8fkFUFRl](images/coriolis_meme.jpg)
+![https://www.facebook.com/aero.plane.921/posts/pfbid0xamjRqqnmeMSTQFPDgmfw4XVj68yLDwy45ckTAXCXjPKCVfsNST18Lzyr8fkFUFRl](images/coriolis_meme.jpg)
 
 One of my Facebook friends, a flat-earth believer, posted this netmeme about the
 record-breaking 2022 7744-yard rifle shot in Wyoming, and I, foolishly, engaged the OP on the claim.
