@@ -13,7 +13,7 @@ Let's dig a little into the actual math involved, from <https://falconballistics
 
 The shot, according to the various sources, was 4.4 miles, or 7744 yards, at a NW trajectory, somewhere around Pinedale, Wyoming. I'm guessing probably in the Wind River range, Nortwest of the town at around 43&degree; latitude. The team didn't provide GPS coordinates because it was on private land, according to an AI summary; I didn't find the source of that statement, but it was probably buried in the text of one of the above URLs, and anyway, it only matters when calculating drift up and down, which I won't go into here, at least not today. The travel time of the bullet was a little over 25.4 seconds.
 
-Plugging those values into the above formula, we get <code>&omega; &bullet; sin(43.0) &bullet; 24.5 &bullet; 7744</code>, or <code>.0000729 &bullet; .832 &bullet; 25.4 &bullet; 7744</code>, yielding 0.943 yards. Remember to convert degrees latitude to radians if you're using Python as your calculator: <code>.0000729\*math.sin(math.radians(43))\*2.45\*7744</code>
+Plugging those values into the above formula, we get <code>&omega; &bullet; sin(43.0) &bullet; 24.5 &bullet; 7744</code>, or <code>.0000729 &bullet; .682 &bullet; 25.4 &bullet; 7744</code>, yielding 0.943 yards. Remember to convert degrees latitude to radians if you're using Python as your calculator: <code>.0000729\*math.sin(math.radians(43))\*2.45\*7744</code>
 
 So the calculated Coriolis drift is under 3 feet, compared to the stated 26 feet per 1 MPH increase in wind speed, which according to the sources varied between 6 and 9 MPH. That's why it was negligible.
 
