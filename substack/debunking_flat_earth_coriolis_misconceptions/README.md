@@ -1,7 +1,6 @@
 ![https://www.facebook.com/aero.plane.921/posts/pfbid0xamjRqqnmeMSTQFPDgmfw4XVj68yLDwy45ckTAXCXjPKCVfsNST18Lzyr8fkFUFRl](images/coriolis_meme.jpg)
 
-One of my Facebook friends, a flat-earth believer, posted this netmeme about the
-record-breaking 2022 7744-yard rifle shot in Wyoming, and I, foolishly, engaged the OP on the claim.
+One of my Facebook friends, a flat-earth believer, posted [this netmeme](https://www.facebook.com/aero.plane.921/posts/pfbid0xamjRqqnmeMSTQFPDgmfw4XVj68yLDwy45ckTAXCXjPKCVfsNST18Lzyr8fkFUFRl) about the record-breaking 2022 7744-yard rifle shot in Wyoming, and I, foolishly, engaged the OP on the claim.
 
 There are several writeups on the shot: <https://outdoorlife.com/guns/new-world-record-longest-rifle-shot>, <https://cowboystatedaily.com/2022/09/at-4-4-miles-wyoming-team-sets-new-rifle-shot-world-record>, and from the team itself, <https://nomadrifleman.com/world-record-shot/>, are some examples.
 
