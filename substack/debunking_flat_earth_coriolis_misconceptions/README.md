@@ -22,4 +22,4 @@ Plugging those values into the above formula, we get <code>&omega; &bullet; sin(
 
 So the calculated Coriolis drift is under 30 feet, compared to the stated 26 feet per 1 MPH increase in wind speed, which according to the sources varied between 6 and 9 MPH. That's why it was negligible.
 
-
+The MOA calculation, according to Falcon, is 4.18 POI to the right, so you'd need to dial the sights left by 4.18 (or 4.19 using the sidereal day), <code>0.25 &bullet; t &bullet; sin(&phi;)</code>, the same formula except converting distance into minutes of arc.
