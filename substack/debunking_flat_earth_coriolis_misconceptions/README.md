@@ -8,12 +8,18 @@ Hornady, the ammunition and reloading machinery manufacturer, in its [ballistics
 
 The OP, a certain pseudonymous Eric FETruther, has this misconception, judging by one of his replies, "... thank you for correcting me from 1,000 MPH to 760 MPH. You changed it from "target moves 4.6 miles" to "target moves 5.17 miles." You made my point STRONGER. Is 5 miles of movement better for you? Does 5 miles of target movement make your shot more believable?"
 
+Then, in a later comment, he challenged me: "If the bullet and the target are both moving at 760 mph together, and the velocity is baked in, why would the bullet land left or right at all? What makes it drift sideways if everything is moving together? And how many feet, how many inches, how many MOA was that sideways drift on THIS shot?
+
+"Not in theory. Not in a Hornady PDF. On THIS shot. With a number."
+
+So, Eric, here's my answer.
+
 Let's dig a little into the actual math involved, from <https://falconballistics.ca/utilities/coriolis-effect/>: <code>&Delta;y = &omega; &bullet; sin(&phi;) td</code>. Various websites and videos use either .000072921 or .000072722 as the &omega; value, the rotation speed of Earth in radians per second. That discrepancy is due to using an earth day or a sidereal day, the latter of which takes earth's revolution around the sun into account. The difference is minimal, so let's ignore it. <code>&phi;</code> is the latitude, <code>t</code> is time in seconds, and <code>d</code> is distance. Whatever unit you use for distance is the same for the delta-y, the resultant lateral drift will use the same.
 
 The shot, according to the various sources, was 4.4 miles, or 7744 yards, at a NW trajectory, somewhere around Pinedale, Wyoming. I'm guessing probably in the Wind River range, Nortwest of the town at around 43&deg; latitude. The team didn't provide GPS coordinates because it was on private land, according to an AI summary; I didn't find the source of that statement, but it was probably buried in the text of one of the above URLs, and anyway, it only matters when calculating drift up and down, which I won't go into here, at least not today. The travel time of the bullet was a little over 24.5 seconds.
 
 Plugging those values into the above formula, we get <code>&omega; &bullet; sin(43.0) &bullet; 24.5 &bullet; 7744</code>, or <code>.0000729 &bullet; .682 &bullet; 24.5 &bullet; 7744</code>, yielding 9.43 yards. Remember to convert degrees latitude to radians if you're using Python as your calculator: <code>.0000729\*math.sin(math.radians(43))\*24.5\*7744</code>
 
-So the calculated Coriolis drift is under 3 feet, compared to the stated 26 feet per 1 MPH increase in wind speed, which according to the sources varied between 6 and 9 MPH. That's why it was negligible.
+So the calculated Coriolis drift is under 30 feet, compared to the stated 26 feet per 1 MPH increase in wind speed, which according to the sources varied between 6 and 9 MPH. That's why it was negligible.
 
 
