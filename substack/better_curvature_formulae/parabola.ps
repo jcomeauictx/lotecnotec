@@ -1,0 +1,14 @@
+/parabola {  % a x0 x1 --
+ 3 dict begin /x1 exch def /x0 exch def /a exch def
+ x0 a x0 x0 mul mul moveto  % ay=ax^2
+ x0 2 mul x1 add 3 div a x0 mul x0 x1 2 mul add mul 3 div  % c1
+ x1 2 mul x0 add 3 div a x1 mul x1 x0 2 mul add mul 3 div  % c2
+ x1 a x1 x1 mul mul  % end
+ curveto
+ end
+} def
+
+currentpagedevice /PageSize get aload pop /height exch def /width exch def
+width 2 div height 2 div moveto currentpoint translate
+-0.01 -200 200 parabola stroke
+showpage
