@@ -1,22 +1,26 @@
+/showstack {count array astore aload ==} bind def
 /circle { % steps r --
+ 2 dict begin exch /step exch def /steps 360 def
+ (step: ) =only step =
  currentpoint 3 -1 roll  % x y r
  dup 3 index add  % x y r x+r
  2 index moveto  % move right, to center+r
- 0 1 360 {
+ 0 step steps {
+  dup step add 5 copy (stack before arc:) =only showstack arc
   dup gsave
    1 0 0 setrgbcolor
    -90 add
-   (stack:) = pstack
+   (stack before line:) =only showstack
    rotate
    0 30 rlineto stroke
-  grestore
-  dup 1 add 5 copy arc
   pop pop
+  grestore
  } for
  pop pop pop
+ end
 } def
 
 currentpagedevice /PageSize get aload pop /height exch def /width exch def
 width 2 div height 2 div moveto currentpoint translate
-100 circle stroke
+10 100 circle stroke
 showpage
