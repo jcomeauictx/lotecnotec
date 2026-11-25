@@ -1,0 +1,12 @@
+/circle { % steps r --
+ currentpoint 3 -1 roll  % x y r
+ dup 3 index add  % x y r x+r
+ 2 index moveto  % move right, to center+r
+ 0 1 360 {dup 1 add pstack 5 copy arc pop pop} for
+ pop pop pop
+} def
+
+currentpagedevice /PageSize get aload pop /height exch def /width exch def
+width 2 div height 2 div moveto currentpoint translate
+100 circle stroke
+showpage
