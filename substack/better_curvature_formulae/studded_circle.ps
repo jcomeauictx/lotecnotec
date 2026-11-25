@@ -2,7 +2,17 @@
  currentpoint 3 -1 roll  % x y r
  dup 3 index add  % x y r x+r
  2 index moveto  % move right, to center+r
- 0 1 360 {dup 1 add pstack 5 copy arc pop pop} for
+ 0 1 360 {
+  dup gsave
+   1 0 0 setrgbcolor
+   -90 add
+   (stack:) = pstack
+   rotate
+   0 30 rlineto stroke
+  grestore
+  dup 1 add 5 copy arc
+  pop pop
+ } for
  pop pop pop
 } def
 
