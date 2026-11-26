@@ -19,7 +19,14 @@
  end
 } def
 
-currentpagedevice /PageSize get aload pop /height exch def /width exch def
-width 2 div height 2 div moveto currentpoint translate
-10 100 circle stroke
-showpage
+{ARGUMENTS} stopped {[]} if {0 get} stopped {0} if cvi 0 gt
+ {
+  currentpagedevice /PageSize get aload pop /height exch def /width exch def
+  width 2 div height 2 div moveto currentpoint translate
+  10 100 circle stroke
+  showpage
+ }
+ {
+  (studded-circle.ps loaded) =
+ }
+ ifelse

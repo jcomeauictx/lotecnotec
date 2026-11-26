@@ -7,8 +7,12 @@
  curveto
  end
 } def
-
-currentpagedevice /PageSize get aload pop /height exch def /width exch def
-width 2 div height 2 div moveto currentpoint translate
--0.01 -200 200 parabola stroke
-showpage
+{ARGUMENTS} stopped {[]} if {0 get} stopped {0} if cvi 0 gt
+ {
+  currentpagedevice /PageSize get aload pop /height exch def /width exch def
+  width 2 div height 2 div moveto currentpoint translate
+  -0.01 -200 200 parabola stroke
+  showpage
+ }
+ {(parabola.ps loaded) =}
+ ifelse
