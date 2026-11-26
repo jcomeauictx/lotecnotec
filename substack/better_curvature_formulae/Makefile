@@ -1,3 +1,3 @@
 all: compare
 %: %.ps
-	gs -dNOSAFER $< --
+	gs -dNOSAFER -- $< 1

@@ -1,3 +1,9 @@
 %!ps-nonconforming
-(studded-circle.ps) run
-(parabola.ps) run
+{ARGUMENTS} stopped {[]} if {0 get} stopped {0} if cvi dup 0 gt
+ {
+  (Attempting to load circle and parabola scripts) =
+  (studded_circle.ps) run
+  (parabola.ps) run
+ }
+ {(No args given) =}
+ ifelse
