@@ -7,10 +7,21 @@
   (parabola.ps) run
   currentpagedevice /PageSize get aload pop /height exch def /width exch def
   width 2 div height 2 div moveto currentpoint translate
-  (showing parabola) =
-  gsave 0 0 1 setrgbcolor -0.01 -200 200 parabola stroke grestore
+  /earthradius 3159.0 def  % not accounting for refraction
+  100.0 earthradius div dup scale
   (showing studded circle) =
-  gsave 1 0 0 setrgbcolor 10 100 circle stroke grestore
+  gsave
+   1 0 0 setrgbcolor
+   10000 earthradius circle
+   stroke
+  grestore
+  (showing parabola) =
+  gsave
+   0 earthradius rmoveto currentpoint translate
+   0 0 1 setrgbcolor
+   -.0002 earthradius dup neg exch parabola
+   stroke
+  grestore
   showpage
  }
  {(No args given to compare.ps) =}
