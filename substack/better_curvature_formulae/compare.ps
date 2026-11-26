@@ -5,6 +5,13 @@
   /ARGUMENTS [] def  % prevent the drawing scripts from running test programs
   (studded_circle.ps) run
   (parabola.ps) run
+  currentpagedevice /PageSize get aload pop /height exch def /width exch def
+  width 2 div height 2 div moveto currentpoint translate
+  (showing parabola) =
+  gsave 0 0 1 setrgbcolor -0.01 -200 200 parabola stroke grestore
+  (showing studded circle) =
+  gsave 1 0 0 setrgbcolor 10 100 circle stroke grestore
+  showpage
  }
  {(No args given to compare.ps) =}
  ifelse
