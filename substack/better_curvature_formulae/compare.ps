@@ -2,6 +2,7 @@
 {ARGUMENTS} stopped {[]} if {0 get} stopped {0} if cvi dup 0 gt
  {
   (Attempting to load circle and parabola scripts) =
+  /ARGUMENTS [] def  % prevent the drawing scripts from running test programs
   (studded_circle.ps) run
   (parabola.ps) run
  }
