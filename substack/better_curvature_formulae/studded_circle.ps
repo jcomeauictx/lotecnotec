@@ -3,6 +3,7 @@
  2 dict begin exch /step exch def /steps 360 def
  (step: ) =only step =
  currentpoint 3 -1 roll  % x y r
+ dup 10 div /marker exch def  % mark is 1/10 of radius
  dup 3 index add  % x y r x+r
  2 index moveto  % move right, to center+r
  0 step steps {
@@ -11,7 +12,7 @@
    -90 add
    (stack before line:) =only showstack
    rotate
-   0 10 rlineto stroke
+   0 marker rlineto stroke
   pop pop
   grestore
  } for
