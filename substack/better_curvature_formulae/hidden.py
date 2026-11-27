@@ -28,10 +28,11 @@ def parabolic(distance, height=None, radius=RADIUS):
     distance = int(distance)  # in case string passed in from shell
     height = int(height or 0)
     radius = int(radius)
-    logstring = ('returning hidden height for distance=%.02f miles,'
+    logstring = ('returning hidden height in feet for distance=%.02f miles,'
                  ' observer height=%.02f feet, radius=%.01f miles')
     logging.info(logstring, distance, height, radius)
-    return (distance - sqrt(2 * radius * height)) ** 2 / (2 * radius)
+    hidden = (distance - sqrt(2 * radius * height)) ** 2 / (2 * radius)
+    return FEET_PER_MILE * hidden
 
 def refracted_parabolic(distance, height=None, radius=V_RADIUS):
     '''
