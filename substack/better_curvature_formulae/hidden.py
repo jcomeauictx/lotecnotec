@@ -13,7 +13,7 @@ FEET_PER_MILE = 5280
 
 logging.basicConfig(level=logging.DEBUG if __debug__ else logging.INFO)
 
-def hidden(distance, height=None, radius=RADIUS, formula='parabolic'):
+def hidden(distance, formula='parabolic', height=None, radius=RADIUS):
     '''
     defaults to usual way flat earth proponents estimate the curve
 
@@ -25,30 +25,41 @@ def hidden(distance, height=None, radius=RADIUS, formula='parabolic'):
     feet of hidden height is about 2/3 d squared
 
     formula='spherical' uses metabunk.com's trigonometric calculation of
-    hidden height: r(r+h)/r*cos(theta)+sqrt(h(2r+h))*sin(theta))-r
+    hidden height: r(r+h)/(r*cos(theta)+sqrt(h(2r+h))*sin(theta))-r
     '''
-    logging.debug('calculating hidden height using parabolic formula')
+    logging.debug('calculating hidden height using %s formula', formula)
     distance = float(distance)  # in case string passed in from shell
     height = float(height or 0)
     radius = int(radius)
     logstring = ('returning hidden height in feet for distance=%.02f miles,'
                  ' observer height=%.02f feet, radius=%.01f miles')
     logging.info(logstring, distance, height, radius)
-    height = height / FEET_PER_MILE  # same unites for all values
+    height = height / FEET_PER_MILE  # same units for all values
     if formula == 'parabolic':
         obscured = (distance - sqrt(2 * radius * height)) ** 2 / (2 * radius)
     else:
-        # use spherical formula r(r+h)/r*cos(theta)+sqrt(h(2r+h))*sin(theta))-r
+        # use spherical formula:
+        #  r(r+h)/(r*cos(theta)+sqrt(h(2r+h))*sin(theta))-r
         # first calculate theta by radians of circumference covered by distance
         # (distance assumed to be from point to point on a smooth globe)
-        pass
+        theta = distance / radius
+        obscured = radius * (radius + height) / (
+            radius * cos(theta) + sqrt(height * ( 2 * radius + height)) *
+            sin(theta)
+        ) - radius
     return obscured * FEET_PER_MILE  # back to feet for result
 
-def refracted_parabolic(distance, height=None, radius=V_RADIUS):
+def refracted(distance, formula='parabolic', height=None, radius=V_RADIUS):
     '''
     parabolic formula, but using standard refraction value
     '''
-    return parabolic(distance, height, radius)
+    return hidden(distance, formula, height, radius)
+
+def spherical(distance, formula='spherical', height=None, radius=V_RADIUS):
+    '''
+    no sense using non-refracted radius for spherical calculation
+    '''
+    return hidden(distance, formula, height, radius)
 
 if __name__ == '__main__':
     logging.debug('sys.argv before modification: %s', sys.argv)
