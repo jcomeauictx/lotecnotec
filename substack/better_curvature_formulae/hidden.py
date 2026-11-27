@@ -41,6 +41,13 @@ def refracted_parabolic(distance, height=None, radius=V_RADIUS):
     '''
     return parabolic(distance, height, radius)
 
+def metabunk(distance, height=None, radius=V_RADIUS):
+    '''
+    metabunk.com's trigonometric calculation of hidden height
+
+    formula: r(r+h)/r*cos(theta)+sqrt(h(2r+h))*sin(theta))-r
+    '''
+
 hidden = parabolic  # default function
 
 if __name__ == '__main__':
