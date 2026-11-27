@@ -13,9 +13,9 @@ FEET_PER_MILE = 5280
 
 logging.basicConfig(level=logging.DEBUG if __debug__ else logging.INFO)
 
-def parabolic(distance, height=None, radius=RADIUS):
+def hidden(distance, height=None, radius=RADIUS, formula='parabolic'):
     '''
-    usual way flat earth proponents estimate the curve
+    defaults to usual way flat earth proponents estimate the curve
 
     it doesn't account for observer height nor for atmospheric refraction
 
@@ -23,6 +23,9 @@ def parabolic(distance, height=None, radius=RADIUS):
     since we're using R=RADIUS, d expressed in miles, and returning feet
     of hidden height, 2r=7918, and 1/7918*5280=.667; so, simplified,
     feet of hidden height is about 2/3 d squared
+
+    formula='spherical' uses metabunk.com's trigonometric calculation of
+    hidden height: r(r+h)/r*cos(theta)+sqrt(h(2r+h))*sin(theta))-r
     '''
     logging.debug('calculating hidden height using parabolic formula')
     distance = float(distance)  # in case string passed in from shell
@@ -32,23 +35,20 @@ def parabolic(distance, height=None, radius=RADIUS):
                  ' observer height=%.02f feet, radius=%.01f miles')
     logging.info(logstring, distance, height, radius)
     height = height / FEET_PER_MILE  # same unites for all values
-    hidden = (distance - sqrt(2 * radius * height)) ** 2 / (2 * radius)
-    return hidden * FEET_PER_MILE  # back to feet for result
+    if formula == 'parabolic':
+        obscured = (distance - sqrt(2 * radius * height)) ** 2 / (2 * radius)
+    else:
+        # use spherical formula r(r+h)/r*cos(theta)+sqrt(h(2r+h))*sin(theta))-r
+        # first calculate theta by radians of circumference covered by distance
+        # (distance assumed to be from point to point on a smooth globe)
+        pass
+    return obscured * FEET_PER_MILE  # back to feet for result
 
 def refracted_parabolic(distance, height=None, radius=V_RADIUS):
     '''
     parabolic formula, but using standard refraction value
     '''
     return parabolic(distance, height, radius)
-
-def metabunk(distance, height=None, radius=V_RADIUS):
-    '''
-    metabunk.com's trigonometric calculation of hidden height
-
-    formula: r(r+h)/r*cos(theta)+sqrt(h(2r+h))*sin(theta))-r
-    '''
-
-hidden = parabolic  # default function
 
 if __name__ == '__main__':
     logging.debug('sys.argv before modification: %s', sys.argv)
