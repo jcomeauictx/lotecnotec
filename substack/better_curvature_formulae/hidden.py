@@ -13,7 +13,7 @@ FEET_PER_MILE = 5280
 
 logging.basicConfig(level=logging.DEBUG if __debug__ else logging.INFO)
 
-def hidden(distance, formula='parabolic', height=None, radius=RADIUS):
+def hidden(distance, height=None, radius=RADIUS, formula='parabolic'):
     '''
     defaults to usual way flat earth proponents estimate the curve
 
@@ -49,17 +49,19 @@ def hidden(distance, formula='parabolic', height=None, radius=RADIUS):
         ) - radius
     return obscured * FEET_PER_MILE  # back to feet for result
 
-def refracted(distance, formula='parabolic', height=None, radius=V_RADIUS):
+def refracted(distance, height=None, radius=V_RADIUS, formula='parabolic'):
     '''
-    parabolic formula, but using standard refraction value
+    parabolic formula by default, but using standard refraction value
     '''
-    return hidden(distance, formula, height, radius)
+    return hidden(distance, height, radius, formula)
 
-def spherical(distance, formula='spherical', height=None, radius=V_RADIUS):
+def spherical(distance, height=None, radius=V_RADIUS, formula='spherical'):
     '''
     no sense using non-refracted radius for spherical calculation
     '''
-    return hidden(distance, formula, height, radius)
+    return hidden(distance, height, radius, formula)
+
+parabolic = hidden  # enable `parabolic` symlink
 
 if __name__ == '__main__':
     logging.debug('sys.argv before modification: %s', sys.argv)
