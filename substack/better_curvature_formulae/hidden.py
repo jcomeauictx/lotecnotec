@@ -25,14 +25,15 @@ def parabolic(distance, height=None, radius=RADIUS):
     feet of hidden height is about 2/3 d squared
     '''
     logging.debug('calculating hidden height using parabolic formula')
-    distance = int(distance)  # in case string passed in from shell
-    height = int(height or 0)
+    distance = float(distance)  # in case string passed in from shell
+    height = float(height or 0)
     radius = int(radius)
     logstring = ('returning hidden height in feet for distance=%.02f miles,'
                  ' observer height=%.02f feet, radius=%.01f miles')
     logging.info(logstring, distance, height, radius)
+    height = height / FEET_PER_MILE  # same unites for all values
     hidden = (distance - sqrt(2 * radius * height)) ** 2 / (2 * radius)
-    return FEET_PER_MILE * hidden
+    return hidden * FEET_PER_MILE  # back to feet for result
 
 def refracted_parabolic(distance, height=None, radius=V_RADIUS):
     '''
