@@ -65,12 +65,15 @@ parabolic = hidden  # enable `parabolic` symlink
 
 if __name__ == '__main__':
     logging.debug('sys.argv before modification: %s', sys.argv)
-    if len(sys.argv) >= 1:
-        COMMAND = os.path.splitext(os.path.basename(sys.argv[0]))[0]
-    elif len(sys.argv) >= 2:
-        if sys.argv[1].isdigit():
-            sys.argv.insert(1, 'DEFAULT')
-        else:
-            COMMAND = sys.argv[1]
-    logging.debug('sys.argv after modification: %s', sys.argv)
-    print(eval(COMMAND)(*sys.argv[1:]))  # pylint: disable=eval-used
+    COMMAND = os.path.splitext(os.path.basename(sys.argv[0]))[0]
+    if len(sys.argv) < 2 and COMMAND != 'hidden':
+        logging.error('Usage: %s distance height', sys.argv[0])
+        logging.info('Example: %s 10 5  # 10 miles away from 5 feet up',
+                     sys.argv[0])
+    elif COMMAND == 'hidden':
+        for d in 1, 5, 10, 50, 100, 200, 500, 1000:
+            for h in 0, 5, 100:
+                for f in parabolic, spherical:
+                    print(f(d, h))
+    else:
+        print(eval(COMMAND)(*sys.argv[1:]))  # pylint: disable=eval-used
