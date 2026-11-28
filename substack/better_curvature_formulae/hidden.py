@@ -3,7 +3,7 @@
 calculate height hidden by curve
 '''
 import sys, os, logging  # pylint: disable=multiple-imports
-from math import sqrt, sin, cos
+from math import sqrt, cos, acos
 
 # "standard" values from metabunk's calculator
 RADIUS = 3959  # standard value for earth's radius
@@ -30,23 +30,28 @@ def hidden(distance, height=None, radius=RADIUS, formula='parabolic'):
     logging.debug('calculating hidden height using %s formula', formula)
     distance = float(distance)  # in case string passed in from shell
     height = float(height or 0)
-    radius = int(radius)
+    radius = float(radius)
     logstring = ('returning hidden height in feet for distance=%.02f miles,'
                  ' observer height=%.02f feet, radius=%.01f miles')
     logging.info(logstring, distance, height, radius)
     height = height / FEET_PER_MILE  # same units for all values
+    # distance to horizon: straight-line tangent for parabolic,
+    # arc length along the surface for spherical
     if formula == 'parabolic':
-        obscured = (distance - sqrt(2 * radius * height)) ** 2 / (2 * radius)
+        horizon = sqrt(2 * radius * height)
     else:
-        # use spherical formula:
-        #  r(r+h)/(r*cos(theta)+sqrt(h(2r+h))*sin(theta))-r
-        # first calculate theta by radians of circumference covered by distance
-        # (distance assumed to be from point to point on a smooth globe)
+        alpha = acos(radius / (radius + height))  # angle to horizon
+        horizon = radius * alpha
+    if distance <= horizon:
+        return 0.0  # target base is on our side of the horizon
+    if formula == 'parabolic':
+        obscured = (distance - horizon) ** 2 / (2 * radius)
+    else:
+        # metabunk's r(r+h)/(r*cos(theta)+sqrt(h(2r+h))*sin(theta))-r
+        # reduces to r/cos(theta-alpha)-r; theta is the angle subtended
+        # by distance, assumed point to point on a smooth globe
         theta = distance / radius
-        obscured = radius * (radius + height) / (
-            radius * cos(theta) + sqrt(height * ( 2 * radius + height)) *
-            sin(theta)
-        ) - radius
+        obscured = radius / cos(theta - alpha) - radius
     return obscured * FEET_PER_MILE  # back to feet for result
 
 def refracted(distance, height=None, radius=V_RADIUS, formula='parabolic'):
